@@ -1,8 +1,8 @@
 import { AgendaDashboard } from "@/components/agenda/AgendaDashboard";
-import { EVENTS_REVALIDATE_SECONDS, getEvents } from "@/services/api";
+import { getEvents } from "@/services/api";
 import type { Metadata } from "next";
 
-export const revalidate = EVENTS_REVALIDATE_SECONDS;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Minha agenda — HackTown",

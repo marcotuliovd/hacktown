@@ -1,9 +1,9 @@
 import { AgendaCompare } from "@/components/onboarding/AgendaCompare";
 import { toOnboardingEvent } from "@/lib/onboarding";
-import { EVENTS_REVALIDATE_SECONDS, getEvents } from "@/services/api";
+import { getEvents } from "@/services/api";
 import type { Metadata } from "next";
 
-export const revalidate = EVENTS_REVALIDATE_SECONDS;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Comparar agendas — HackTown",

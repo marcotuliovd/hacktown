@@ -5,6 +5,8 @@ import { pickFeaturedEvents } from "@/lib/schedule";
 import { getEventById, getEvents } from "@/services/api";
 import type { HacktownEvent } from "@/types/event";
 
+export const dynamic = "force-dynamic";
+
 const FEATURED_ACCENTS = ["green", "magenta", "cyan"] as const;
 
 async function loadFeaturedEvents(): Promise<HacktownEvent[]> {

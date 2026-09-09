@@ -1,10 +1,10 @@
 import { AgendaDayDetail } from "@/components/agenda/AgendaDayDetail";
 import { isFestivalDay } from "@/lib/schedule";
-import { EVENTS_REVALIDATE_SECONDS, getEvents } from "@/services/api";
+import { getEvents } from "@/services/api";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = EVENTS_REVALIDATE_SECONDS;
+export const dynamic = "force-dynamic";
 
 interface AgendaDayPageProps {
   params: { dia: string };

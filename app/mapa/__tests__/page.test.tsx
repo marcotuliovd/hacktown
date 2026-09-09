@@ -10,7 +10,6 @@ jest.mock("next/navigation", () => ({
 }));
 
 jest.mock("@/services/api", () => ({
-  EVENTS_REVALIDATE_SECONDS: 3600,
   getEvents: jest.fn(),
 }));
 
