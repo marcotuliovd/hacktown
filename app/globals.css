@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.bg.base");
+  color: theme("colors.text.primary");
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Título display: uppercase + italic por padrão */
+.font-display {
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+@keyframes map-pin-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 255, 0, 0.67);
+  }
+  70% {
+    box-shadow: 0 0 0 22px rgba(204, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 255, 0, 0);
+  }
+}
+
+.festival-map-pin {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%) scale(var(--ps, 1));
+  transform-origin: center center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #ccff00;
+  color: #0b0c10;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 2px 8px #000a;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+@media (min-width: 1024px) {
+  .festival-map-pin {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+}
+
+.festival-map-pin.act {
+  z-index: 8;
+  background: #fff;
+}
+
+.festival-map-pin.act::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 3px solid #ccff00;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: map-pin-pulse 1.6s ease-out infinite;
+}
+
+.festival-map-pin.dim {
+  opacity: 0.18;
+}
+
+/* Respeita usuários que preferem menos movimento (marquee, etc.) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
