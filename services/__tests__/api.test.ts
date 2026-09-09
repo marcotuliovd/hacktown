@@ -80,8 +80,8 @@ describe("fetchEventsFromApi", () => {
   beforeEach(() => {
     process.env = {
       ...originalEnv,
-      SUPABASE_URL: "https://example.supabase.co",
-      SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test",
+      NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co",
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test",
     };
     global.fetch = jest.fn();
   });
@@ -203,8 +203,8 @@ describe("fetchEventsFromApi — erros", () => {
   beforeEach(() => {
     process.env = {
       ...originalEnv,
-      SUPABASE_URL: "https://example.supabase.co",
-      SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test",
+      NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co",
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test",
     };
     global.fetch = jest.fn();
   });

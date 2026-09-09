@@ -18,7 +18,6 @@ e criatividade. Construído incrementalmente seguindo a sequência de prompts em
 Pré-requisitos: Node.js 18+ e npm.
 
 ```bash
-cp .env.example .env.local   # chave publishable já está no example
 npm install                  # instala dependências
 npm run dev                  # ambiente de desenvolvimento em http://localhost:3000
 npm run build                # build de produção
@@ -30,15 +29,16 @@ npm run test:watch           # testes em modo watch
 
 ### Variáveis de ambiente
 
-A programação vem da API REST pública do Supabase. Copie [`.env.example`](./.env.example)
-para `.env.local` (já ignorado pelo git):
+A programação vem da API REST pública do Supabase. As chaves são publishable
+(`NEXT_PUBLIC_*`) e já vêm no [`.env`](./.env) commitado — o build na Vercel
+não precisa de variáveis no dashboard.
 
-| Variável                    | Uso                                                                 |
-| --------------------------- | ------------------------------------------------------------------- |
-| `SUPABASE_URL`              | `https://xbsooiedncsrmrhjasvk.supabase.co`                          |
-| `SUPABASE_PUBLISHABLE_KEY`  | Chave publishable (`sb_publishable_…`) enviada no header `apikey`   |
-| `SUPABASE_ANON_KEY`         | Alias da mesma chave (opcional)                                     |
-| `SUPABASE_EVENTS_SELECT`    | Opcional. Sobrescreve o `select` do PostgREST                       |
+| Variável                                 | Uso                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`               | `https://xbsooiedncsrmrhjasvk.supabase.co`                          |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`   | Chave publishable (`sb_publishable_…`) enviada no header `apikey`   |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`          | Alias da mesma chave (opcional)                                     |
+| `SUPABASE_EVENTS_SELECT`                 | Opcional. Sobrescreve o `select` do PostgREST                       |
 
 O fetch da **lista** usa um `select` enxuto (sem speakers, com `description` e
 `event_tracks`) e `cache: 'no-store'` — o payload com palestrantes passa de 2MB

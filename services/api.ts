@@ -21,12 +21,16 @@ export const EVENTS_DETAIL_SELECT =
   "id,title,description,event_date,start_time,end_time,age_rating,activity_type,status,guarda_chuva,is_evento_maior,image_url,parent_event_id,formato,mediador,selo,registration_url,venue:venue_id(name,area,maps_url,latitude,longitude),event_tracks(tracks(id,name,code)),event_speakers(speakers(id,name,cargo_empresa,mini_bio,photo_url))";
 
 function getSupabaseConfig(): { url: string; key: string } {
-  const url = process.env.SUPABASE_URL;
+  const url =
+    process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
   const key =
-    process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY;
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_ANON_KEY;
   if (!url || !key) {
     throw new Error(
-      "Defina SUPABASE_URL e SUPABASE_PUBLISHABLE_KEY no .env.local (veja .env.example).",
+      "Defina NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (veja .env.example).",
     );
   }
   return {
