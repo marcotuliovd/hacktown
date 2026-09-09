@@ -130,6 +130,30 @@ describe("fetchEventsFromApi", () => {
     expect(headers["Accept-Profile"]).toBe("public");
   });
 
+  it("usa a URL pública quando o env não está definido", async () => {
+    delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+    delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    delete process.env.SUPABASE_URL;
+    delete process.env.SUPABASE_PUBLISHABLE_KEY;
+    delete process.env.SUPABASE_ANON_KEY;
+
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+      status: 200,
+      text: async () => "[]",
+    });
+
+    await fetchEventsFromApi();
+    const url = (global.fetch as jest.Mock).mock.calls[0][0] as string;
+    expect(url.startsWith("https://xbsooiedncsrmrhjasvk.supabase.co/")).toBe(
+      true,
+    );
+    expect((global.fetch as jest.Mock).mock.calls[0][1].headers.apikey).toBe(
+      "sb_publishable_-xZkCMPyJLSSXZZvwHRGLw_QFbLS_yN",
+    );
+  });
+
   it("busca um evento por id com o select da ficha", async () => {
     (global.fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,

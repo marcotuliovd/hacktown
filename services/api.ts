@@ -20,19 +20,21 @@ export const EVENTS_LIST_SELECT =
 export const EVENTS_DETAIL_SELECT =
   "id,title,description,event_date,start_time,end_time,age_rating,activity_type,status,guarda_chuva,is_evento_maior,image_url,parent_event_id,formato,mediador,selo,registration_url,venue:venue_id(name,area,maps_url,latitude,longitude),event_tracks(tracks(id,name,code)),event_speakers(speakers(id,name,cargo_empresa,mini_bio,photo_url))";
 
+/** Publishable — já exposta no client do schedule hub. Override via NEXT_PUBLIC_*. */
+const PUBLIC_SUPABASE_URL = "https://xbsooiedncsrmrhjasvk.supabase.co";
+const PUBLIC_SUPABASE_KEY = "sb_publishable_-xZkCMPyJLSSXZZvwHRGLw_QFbLS_yN";
+
 function getSupabaseConfig(): { url: string; key: string } {
   const url =
-    process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+    process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    process.env.SUPABASE_URL ||
+    PUBLIC_SUPABASE_URL;
   const key =
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.SUPABASE_PUBLISHABLE_KEY ||
-    process.env.SUPABASE_ANON_KEY;
-  if (!url || !key) {
-    throw new Error(
-      "Defina NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (veja .env.example).",
-    );
-  }
+    process.env.SUPABASE_ANON_KEY ||
+    PUBLIC_SUPABASE_KEY;
   return {
     url: url.replace(/\/$/, ""),
     key,

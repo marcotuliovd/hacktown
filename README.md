@@ -29,9 +29,9 @@ npm run test:watch           # testes em modo watch
 
 ### Variáveis de ambiente
 
-A programação vem da API REST pública do Supabase. As chaves são publishable
-(`NEXT_PUBLIC_*`) e já vêm no [`.env`](./.env) commitado — o build na Vercel
-não precisa de variáveis no dashboard.
+A programação vem da API REST pública do Supabase. As chaves publishable
+(`NEXT_PUBLIC_*`) também estão como default em [`services/api.ts`](./services/api.ts),
+então o build na Vercel não depende do dashboard nem de `.env`.
 
 | Variável                                 | Uso                                                                 |
 | ---------------------------------------- | ------------------------------------------------------------------- |
