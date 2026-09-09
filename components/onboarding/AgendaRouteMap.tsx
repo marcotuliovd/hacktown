@@ -105,7 +105,7 @@ export function AgendaRouteMap({ points }: AgendaRouteMapProps) {
 
   return (
     <div
-      className="relative overflow-hidden border border-subtle bg-bg-base"
+      className="relative w-full overflow-hidden border border-subtle bg-bg-base"
       style={{ aspectRatio: `${box.w} / ${box.h}` }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
